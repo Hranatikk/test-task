@@ -1,0 +1,17 @@
+diff --git a/node_modules/@react-native-documents/picker/ios/RNDocumentPicker.mm b/node_modules/@react-native-documents/picker/ios/RNDocumentPicker.mm
+index b31f009..dd8ffa7 100644
+--- a/node_modules/@react-native-documents/picker/ios/RNDocumentPicker.mm
++++ b/node_modules/@react-native-documents/picker/ios/RNDocumentPicker.mm
+@@ -84,8 +84,10 @@ RCT_EXPORT_METHOD(writeDocuments:(NSDictionary *)options resolve:(RCTPromiseReso
+ }
+ 
+ RCT_EXPORT_METHOD(releaseSecureAccess:(NSArray *)uris resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
+-  [self.docPicker stopAccessingOpenedUrls:uris];
+-  resolve([NSNull null]);
++  dispatch_async(dispatch_get_main_queue(), ^{
++    [self.docPicker stopAccessingOpenedUrls:uris];
++    resolve([NSNull null]);
++  });
+ }
+ 
+ RCT_EXPORT_METHOD(releaseLongTermAccess:(NSArray *)uris resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {

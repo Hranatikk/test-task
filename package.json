@@ -1,0 +1,7 @@
+{
+  "name": "statement-import",
+  "private": true,
+  "scripts": {
+    "verify:kit": "cd kit && shasum -a 256 -c ../docs/kit.sha256"
+  }
+}
